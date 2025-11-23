@@ -6,11 +6,9 @@ using Moq;
 using SmartManagement.API;
 using SmartManagement.Application.Services;
 using SmartManagement.Application.DTOs;
-using SmartManagement.Domain.Enums;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xunit;
-using TaskStatus = SmartManagement.Domain.Enums.TaskStatus;
 
 public class TaskEndpointsTests
 {
@@ -27,8 +25,8 @@ public class TaskEndpointsTests
         
         var fakeTaskResponseDtos = new List<TaskResponseDTO>
         {
-            new TaskResponseDTO { Id = 1, Title = "Test Task 1", Description = "Description 1", Status = TaskStatus.PENDING },
-            new TaskResponseDTO { Id = 2, Title = "Test Task 2", Description = "Description 2", Status = TaskStatus.IN_PROGRESS }
+            new TaskResponseDTO { Id = 1, Title = "Test Task 1", Description = "Description 1", Status = "PENDING" },
+            new TaskResponseDTO { Id = 2, Title = "Test Task 2", Description = "Description 2", Status = "IN_PROGRESS"}
         };
 
         _mockService.Setup(service => service.GetAllAsync()).ReturnsAsync(fakeTaskResponseDtos);
@@ -64,7 +62,7 @@ public class TaskEndpointsTests
         // Arrange
         // 1. Crie um ID e um DTO falsos para o cenário de sucesso.
         const int existingId = 1;
-        var fakeTaskDto = new TaskResponseDTO { Id = existingId, Title = "Existing Task", Description = "A task that exists.", Status = TaskStatus.IN_PROGRESS };
+        var fakeTaskDto = new TaskResponseDTO { Id = existingId, Title = "Existing Task", Description = "A task that exists.", Status = "IN_PROGRESS" };
 
         // 2. Configure o mock: Quando GetByIdAsync for chamado com 'existingId',
         //    ele deve retornar o DTO falso.
@@ -113,7 +111,7 @@ public class TaskEndpointsTests
         };
         // 2. Crie o DTO de resposta que o serviço DEVE retornar após a criação.
         //    Ele é parecido, mas já tem um ID.
-        var responseDto = new TaskResponseDTO { Id = 10, Title = requestDto.Title, Description = requestDto.Description, Status = TaskStatus.PENDING };
+        var responseDto = new TaskResponseDTO { Id = 10, Title = requestDto.Title, Description = requestDto.Description, Status ="PENDING" };
 
         // 3. Configure o mock: Quando CreateAsync for chamado com QUALQUER TaskRequestDTO,
         //    ele deve retornar o nosso DTO de resposta falso.
@@ -156,7 +154,7 @@ public async Task UpdateTaskHandler_ShouldReturnOkWithUpdatedTask_WhenTaskExists
         Id = existingId,
         Title = requestDto.Title,
         Description = requestDto.Description,
-        Status = TaskStatus.IN_PROGRESS // O status pode ter sido alterado pela lógica de negócio
+        Status ="IN_PROGRESS" // O status pode ter sido alterado pela lógica de negócio
     };
 
     // 3. Configure o mock: Quando UpdateAsync for chamado com o ID e qualquer DTO,

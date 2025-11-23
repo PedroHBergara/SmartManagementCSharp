@@ -1,6 +1,4 @@
-﻿using SmartManagement.Domain.Enums;
-using DomainTaskStatus = SmartManagement.Domain.Enums.TaskStatus;
-
+﻿
 namespace SmartManagement.Domain.Entity;
 
 public class TaskEntity
@@ -13,11 +11,11 @@ public class TaskEntity
 
     public string Description { get; set; } = string.Empty;
 
-    public DomainTaskStatus Status { get; set; } = DomainTaskStatus.PENDING;
+    public string Status { get; set; }
 
     public DateTime? Due_Date { get; set; }
 
-    public TaskCategory Category { get; set; } = TaskCategory.PERSONAL;
+    public string Type { get; set; }
 
     public DateTime CreatedAt { get; set; }
     

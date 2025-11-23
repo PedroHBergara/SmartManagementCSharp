@@ -39,7 +39,7 @@ namespace SmartManagement.API
 
             return Results.Ok(tasks); // Retorna 200 OK com os dados
         }
-        internal static async Task<IResult> GetTaskByIdHandler(int id, ITaskService service)
+        internal static async Task<IResult> GetTaskByIdHandler(long id, ITaskService service)
         {
             var task = await service.GetByIdAsync(id);
 
@@ -52,13 +52,13 @@ namespace SmartManagement.API
             // Results.Created gera a resposta 201 com o cabeçalho 'Location' e o objeto no corpo.
             return Results.Created($"/tasks/{createdTask.Id}", createdTask);
         }
-        internal static async Task<IResult> UpdateTaskHandler(int id, TaskRequestDTO taskDto, ITaskService service)
+        internal static async Task<IResult> UpdateTaskHandler(long id, TaskRequestDTO taskDto, ITaskService service)
         {
             var updatedTask = await service.UpdateAsync(id, taskDto);
 
             return updatedTask is not null ? Results.Ok(updatedTask) : Results.NotFound();
         }
-        internal static async Task<IResult> DeleteTaskHandler(int id, ITaskService service)
+        internal static async Task<IResult> DeleteTaskHandler(long id, ITaskService service)
         {
             var success = await service.DeleteAsync(id);
 

@@ -1,5 +1,4 @@
 ﻿using SmartManagement.Domain.Entity;
-using SmartManagement.Domain.Enums;
 
 namespace SmartManagement.Infrastructure.Repositories;
 

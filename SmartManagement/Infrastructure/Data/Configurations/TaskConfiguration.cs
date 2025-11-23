@@ -18,7 +18,8 @@ namespace SmartManagement.Infrastructure.Configurations
             builder.Property(t => t.UserId)
                 .HasColumnName("USER_ID");
 
-            builder.Property(t => t.Category)
+            builder.Property(t => t.Type)
+                .HasConversion<string>()
                 .HasColumnName("TYPE");
             
             builder.Property(t => t.Title)
@@ -35,6 +36,7 @@ namespace SmartManagement.Infrastructure.Configurations
             
             builder.Property(t => t.Status)
                 .HasColumnName("STATUS")
+                .HasConversion<string>()
                 .IsRequired();
             
             builder.Property(t => t.CreatedAt)

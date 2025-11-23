@@ -6,8 +6,8 @@ namespace SmartManagement.Application.Services
     {
         Task<TaskResponseDTO> CreateAsync(TaskRequestDTO dto);
         Task<List<TaskResponseDTO>> GetAllAsync();
-        Task<TaskResponseDTO?> GetByIdAsync(int id);
-        Task<TaskResponseDTO?> UpdateAsync(int id, TaskRequestDTO dto);
-        Task<bool> DeleteAsync(int id);
+        Task<TaskResponseDTO?> GetByIdAsync(long id);
+        Task<TaskResponseDTO?> UpdateAsync(long id, TaskRequestDTO dto);
+        Task<bool> DeleteAsync(long id);
     }
 }

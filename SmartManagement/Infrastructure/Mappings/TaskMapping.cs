@@ -12,7 +12,7 @@ namespace SmartManagement.Infrastructure.Mappings
             {
                 Title = dto.Title,
                 Description = dto.Description,
-                Category = dto.Category,
+                Type = dto.Type,
                 Status = dto.Status,
                 Due_Date = dto.Due_Date,
             };
@@ -26,7 +26,7 @@ namespace SmartManagement.Infrastructure.Mappings
                 Id = entity.Id,
                 Title = entity.Title,
                 Description = entity.Description,
-                Category = entity.Category,
+                Type = entity.Type,
                 Status = entity.Status,
                 Due_Date = entity.Due_Date,
                 CreatedAt = entity.CreatedAt,
@@ -39,7 +39,7 @@ namespace SmartManagement.Infrastructure.Mappings
         {
             entity.Title = dto.Title;
             entity.Description = dto.Description;
-            entity.Category = dto.Category;
+            entity.Type = dto.Type;
             entity.Status = dto.Status;
             entity.Due_Date = dto.Due_Date;
             

@@ -34,14 +34,14 @@ namespace SmartManagement.Application.Services
         }
 
         // Get By Id
-        public async Task<TaskResponseDTO?> GetByIdAsync(int id)
+        public async Task<TaskResponseDTO?> GetByIdAsync(long id)
         {
             var task = await _repository.GetByIdAsync(id);
             return task?.ToResponseDTO();
         }
 
         // Update
-        public async Task<TaskResponseDTO?> UpdateAsync(int id, TaskRequestDTO dto)
+        public async Task<TaskResponseDTO?> UpdateAsync(long id, TaskRequestDTO dto)
         {
             var task = await _repository.GetByIdAsync(id);
             if (task == null)
@@ -55,7 +55,7 @@ namespace SmartManagement.Application.Services
         }
 
         // Delete
-        public async Task<bool> DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(long id)
         {
             return await _repository.DeleteAsync(id);
         }
