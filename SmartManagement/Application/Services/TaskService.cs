@@ -1,9 +1,10 @@
-﻿using Application.DTOs;
-using Application.Mappings;
-using Infrastructure.Repositories;
+﻿using SmartManagement.Application.DTOs;
+using SmartManagement.Infrastructure.Mappings;
+using SmartManagement.Infrastructure.Repositories;
+using SmartManagement.Application.DTOs;
 using SmartManagement.Domain.Entity;
 
-namespace Application.Services
+namespace SmartManagement.Application.Services
 {
     public class TaskService : ITaskService
     {
@@ -19,7 +20,7 @@ namespace Application.Services
         {
             var entity = dto.ToEntity();
             entity.CreatedAt = DateTime.UtcNow;
-            entity.UpdatedAt = DateTime.UtcNow;
+            
 
             var created = await _repository.CreateAsync(entity);
             return created.ToResponseDTO();

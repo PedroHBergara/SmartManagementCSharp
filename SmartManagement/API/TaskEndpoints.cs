@@ -1,7 +1,7 @@
-﻿using Application.DTOs;
-using Application.Services;
+﻿using SmartManagement.Application.DTOs;
+using SmartManagement.Application.Services;
 
-namespace API
+namespace SmartManagement.API
 {
     public static class TaskEndpoints
     {
@@ -11,39 +11,58 @@ namespace API
                 .WithTags("Tasks"); // Ajuda no Swagger
 
             // GET ALL
-            group.MapGet("/", async (ITaskService service) =>
-            {
-                var tasks = await service.GetAllAsync();
-                return Results.Ok(tasks);
-            });
+            group.MapGet("/", GetAllTasksHandler);
 
             // GET BY ID
-            group.MapGet("/{id:int}", async (int id, ITaskService service) =>
-            {
-                var task = await service.GetByIdAsync(id);
-                return task is null ? Results.NotFound() : Results.Ok(task);
-            });
+            group.MapGet("/{id}", GetTaskByIdHandler);
 
             // CREATE
-            group.MapPost("/", async (TaskRequestDTO dto, ITaskService service) =>
-            {
-                var created = await service.CreateAsync(dto);
-                return Results.Created($"/tasks/{created.Id}", created);
-            });
+            group.MapPost("/", CreateTaskHandler); 
 
             // UPDATE
-            group.MapPut("/{id:int}", async (int id, TaskRequestDTO dto, ITaskService service) =>
-            {
-                var updated = await service.UpdateAsync(id, dto);
-                return updated is null ? Results.NotFound() : Results.Ok(updated);
-            });
+            group.MapPut("/{id}", UpdateTaskHandler);
 
             // DELETE
-            group.MapDelete("/{id:int}", async (int id, ITaskService service) =>
+            group.MapDelete("/{id}", DeleteTaskHandler);
+        }
+        
+        internal static async Task<IResult> GetAllTasksHandler(ITaskService service)
+        {
+            var tasks = await service.GetAllAsync();
+
+            // Adicionamos uma verificação para o caso de não haver tarefas,
+            // o que é uma boa prática de API.
+            if (tasks == null || !tasks.Any())
             {
-                var deleted = await service.DeleteAsync(id);
-                return deleted ? Results.NoContent() : Results.NotFound();
-            });
+                return Results.NoContent(); // Retorna 204 No Content
+            }
+
+            return Results.Ok(tasks); // Retorna 200 OK com os dados
+        }
+        internal static async Task<IResult> GetTaskByIdHandler(int id, ITaskService service)
+        {
+            var task = await service.GetByIdAsync(id);
+
+            return task is not null ? Results.Ok(task) : Results.NotFound();
+        }
+        internal static async Task<IResult> CreateTaskHandler(TaskRequestDTO taskDto, ITaskService service)
+        {
+            var createdTask = await service.CreateAsync(taskDto);
+
+            // Results.Created gera a resposta 201 com o cabeçalho 'Location' e o objeto no corpo.
+            return Results.Created($"/tasks/{createdTask.Id}", createdTask);
+        }
+        internal static async Task<IResult> UpdateTaskHandler(int id, TaskRequestDTO taskDto, ITaskService service)
+        {
+            var updatedTask = await service.UpdateAsync(id, taskDto);
+
+            return updatedTask is not null ? Results.Ok(updatedTask) : Results.NotFound();
+        }
+        internal static async Task<IResult> DeleteTaskHandler(int id, ITaskService service)
+        {
+            var success = await service.DeleteAsync(id);
+
+            return success ? Results.NoContent() : Results.NotFound();
         }
     }
 }

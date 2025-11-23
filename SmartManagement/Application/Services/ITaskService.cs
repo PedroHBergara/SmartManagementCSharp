@@ -1,6 +1,6 @@
-﻿using Application.DTOs;
+﻿using SmartManagement.Application.DTOs;
 
-namespace Application.Services
+namespace SmartManagement.Application.Services
 {
     public interface ITaskService
     {

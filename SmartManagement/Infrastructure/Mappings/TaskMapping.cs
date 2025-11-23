@@ -1,7 +1,7 @@
-﻿using Application.DTOs;
+﻿using SmartManagement.Application.DTOs;
 using SmartManagement.Domain.Entity;
 
-namespace Application.Mappings
+namespace SmartManagement.Infrastructure.Mappings
 {
     public static class TaskMapping
     {
@@ -14,7 +14,7 @@ namespace Application.Mappings
                 Description = dto.Description,
                 Category = dto.Category,
                 Status = dto.Status,
-                DueDate = dto.DueDate,
+                Due_Date = dto.Due_Date,
             };
         }
 
@@ -28,9 +28,9 @@ namespace Application.Mappings
                 Description = entity.Description,
                 Category = entity.Category,
                 Status = entity.Status,
-                DueDate = entity.DueDate,
+                Due_Date = entity.Due_Date,
                 CreatedAt = entity.CreatedAt,
-                UpdatedAt = entity.UpdatedAt
+                
             };
         }
 
@@ -41,8 +41,8 @@ namespace Application.Mappings
             entity.Description = dto.Description;
             entity.Category = dto.Category;
             entity.Status = dto.Status;
-            entity.DueDate = dto.DueDate;
-            entity.UpdatedAt = DateTime.UtcNow;
+            entity.Due_Date = dto.Due_Date;
+            
         }
     }
 }

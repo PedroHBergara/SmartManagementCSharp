@@ -15,11 +15,10 @@ public class TaskEntity
 
     public DomainTaskStatus Status { get; set; } = DomainTaskStatus.PENDING;
 
-    public DateTime? DueDate { get; set; }
+    public DateTime? Due_Date { get; set; }
 
     public TaskCategory Category { get; set; } = TaskCategory.PERSONAL;
 
     public DateTime CreatedAt { get; set; }
-
-    public DateTime UpdatedAt { get; set; }
+    
 }

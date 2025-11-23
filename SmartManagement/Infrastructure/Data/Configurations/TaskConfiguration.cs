@@ -13,8 +13,14 @@ namespace SmartManagement.Infrastructure.Configurations
             builder.HasKey(t => t.Id);
 
             builder.Property(t => t.Id)
-                .HasColumnName("ID");
+                .HasColumnName("TASK_ID");
+            
+            builder.Property(t => t.UserId)
+                .HasColumnName("USER_ID");
 
+            builder.Property(t => t.Category)
+                .HasColumnName("TYPE");
+            
             builder.Property(t => t.Title)
                 .HasColumnName("TITLE")
                 .IsRequired()
@@ -23,13 +29,22 @@ namespace SmartManagement.Infrastructure.Configurations
             builder.Property(t => t.Description)
                 .HasColumnName("DESCRIPTION")
                 .HasColumnType("VARCHAR(500)");
-
+            
+            builder.Property(t => t.Due_Date)
+                .HasColumnName("DUE_DATE");
+            
             builder.Property(t => t.Status)
                 .HasColumnName("STATUS")
                 .IsRequired();
+            
+            builder.Property(t => t.CreatedAt)
+                .HasColumnName("CREATED_AT")
+                .HasColumnType("TIMESTAMP")
+                .HasDefaultValueSql("SYSTIMESTAMP");
+            
+            
 
-            builder.Property(t => t.UserId)
-                .HasColumnName("USER_ID");
+
         }
     }
 }

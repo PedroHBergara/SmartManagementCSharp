@@ -1,7 +1,7 @@
 ﻿using SmartManagement.Domain.Entity;
 using SmartManagement.Domain.Enums;
 
-namespace Infrastructure.Repositories;
+namespace SmartManagement.Infrastructure.Repositories;
 
 public interface ITaskRepository
 {

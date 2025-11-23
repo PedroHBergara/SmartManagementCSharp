@@ -1,7 +1,7 @@
 ﻿using Status = SmartManagement.Domain.Enums.TaskStatus;
 using Category = SmartManagement.Domain.Enums.TaskCategory;
 
-namespace Application.DTOs
+namespace SmartManagement.Application.DTOs
 {
     public class TaskResponseDTO
     {
@@ -15,7 +15,7 @@ namespace Application.DTOs
 
         public Status Status { get; set; }
 
-        public DateTime? DueDate { get; set; }
+        public DateTime? Due_Date { get; set; }
 
         public DateTime CreatedAt { get; set; }
 

@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using SmartManagement.Infrastructure.Data;
 
-namespace Infrastructure.Repositories;
+namespace SmartManagement.Infrastructure.Repositories;
 
 public class TaskRepository : ITaskRepository
 {
